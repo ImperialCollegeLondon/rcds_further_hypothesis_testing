@@ -9,15 +9,14 @@
 ### Find the content of the course in GitHub:
 [https://github.com/ImperialCollegeLondon/RCDS_Statistics2](https://github.com/ImperialCollegeLondon/RCDS_Statistics2)
 
-Building on the material covered by *Statistics 1 - Introduction probability, random sampling and hypothesis testing*, this course will introduce a series of commonly used hypothesis tests.
-The course is organized in six chapters, covering the following topics.
+Building on the material covered by *Statistics 1 - Introduction probability and hypothesis testing*, this course will introduce a series of commonly used hypothesis tests.
+The course is organized in four chapters, covering the following topics.
 
-- Comparing mean values. The t-test.
-- Comparing variances. ANOVA.
-- Chi-squared test.
-- Testing for normality.
-- Correcting for multiple tests.
-- Quantify the goodness and accuracy of fit.
+- Introduction. Comparing mean values & t-test.
+- Comparing variances. ANOVA. Comparing dirstibutions & Chi-squared test.
+- Review of momenta of a distribution. Testing for normality, skewness and kurtosis.
+- Correcting for multiple hyputhesis tests. Bonferroni and BH correction.
+- Goodness of a fit. Quantify if an observation fits a given model / theory.
 
 
 ## Setup
