@@ -8,6 +8,9 @@
 
 ### Chapter 2: Comparing variances. Comparing dirstibutions & Chi-squared test.
 
-- Comparing variances & ANOVA. 
+- Comparing variances & ANOVA.
+
+(Emphasize difference)
+
 - Comparing dirstibutions over a categorical variable.
 - The Chi-squared test and Chi-squared distribution.

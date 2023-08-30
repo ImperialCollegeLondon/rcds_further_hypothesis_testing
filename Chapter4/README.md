@@ -10,3 +10,4 @@
 
 - Quantify goodness of a fit.
 - Quantidy if an observation fits a given model / theory.
+- Add example "easier" than KS test. Emphasis on non-parametric alternatives.

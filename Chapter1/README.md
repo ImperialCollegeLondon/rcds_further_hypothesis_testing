@@ -10,4 +10,4 @@
 
 - Introduction. Load a dataset and compute momenta of distribution.
 - Comparing means of two groups. The t-test
-- Comparing variances of two groups. Quantile-quantile (QQ) plots and the F-test.
+- Comparing variances of two groups. Quantile-quantile (QQ) plots and the F-test (...).
