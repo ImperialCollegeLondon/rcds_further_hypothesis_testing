@@ -1,4 +1,4 @@
-# RCDS Statistics 2 - Advanced statistics, further hypothesis testing
+# RCDS - Advanced statistics & further hypothesis testing
 
 ## Dr. Jesús Urtasun Elizari
 
