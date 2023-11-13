@@ -1,8 +1,8 @@
-# RCDS - Advanced statistics & further hypothesis testing
+# RCDS - Further hypothesis testing
 
 ## Dr. Jesús Urtasun Elizari
 
-## Imperial College London - Winter term 2023
+## Imperial College London - 2023 / 2024
 
 <img src="/readme_figures/grad-school-logo.png">
 
@@ -12,12 +12,24 @@
 Building on the material covered by *Statistics 1 - Introduction probability and hypothesis testing*, this course will introduce a series of commonly used hypothesis tests.
 The course is organized in four chapters, covering the following topics.
 
-- Introduction. Comparing mean values & t-test.
-- Comparing variances. ANOVA. Comparing dirstibutions & Chi-squared test.
-- Review of momenta of a distribution. Testing for normality, skewness and kurtosis.
-- Correcting for multiple hyputhesis tests. Bonferroni and BH correction.
-- Goodness of a fit. Quantify if an observation fits a given model / theory.
+# Roadmap of the course
 
+## Chapter 1
+
+- Introduction. Recap hypothesis testing.
+- Comparing mean values & t-test.
+- Comparing variances. ANOVA.
+
+## Chapter 2
+
+- Review of momenta of a distribution. Testing for normality, skewness and kurtosis.
+- Comparing dirstibutions & Chi-squared test.
+- Correcting for multiple hyputhesis tests. Bonferroni and BH correction.
+
+## Chapter 3
+
+- Goodness of a fit. 
+- Quantify if an observation fits a given model / theory.
 
 ## Setup
 
