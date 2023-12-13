@@ -9,27 +9,28 @@
 ### Find the content of the course in GitHub:
 [https://github.com/ImperialCollegeLondon/RCDS_Statistics2](https://github.com/ImperialCollegeLondon/RCDS_Statistics2)
 
-Building on the material covered by *Statistics 1 - Introduction probability and hypothesis testing*, this course will introduce a series of commonly used hypothesis tests.
-The course is organized in four chapters, covering the following topics.
+Building on the material covered by *Statistics 1 - Introduction probability and hypothesis testing*, this course will go deeper in the topic of hypothesis testing.
+The course is organized in three chapters, covering the following topics. All will be followed by a practical session, both in python and R.
 
 # Roadmap of the course
 
-## Chapter 1
+## Chapter 1. Parameter estimation and hypothesis testing.
 
-- Introduction. Recap hypothesis testing.
-- Comparing mean values & t-test.
-- Comparing variances. ANOVA.
+- Parameter estimation. Recap hypothesis testing.
+- Comparing mean values. The t-test.
+- Comparing variances. The F-test.
 
-## Chapter 2
+## Chapter 2. ANOVA. Comparing distributions and multiple groups.
 
-- Review of momenta of a distribution. Testing for normality, skewness and kurtosis.
-- Comparing dirstibutions & Chi-squared test.
-- Correcting for multiple hyputhesis tests. Bonferroni and BH correction.
+- Recap z and t scores. The z distribution and student's t distribution.
+- Comparing means / variances of more than two groups. ANOVA.
+- Comparing distributions. The chi2 test.
 
-## Chapter 3
+## Chapter 3. Multiple hypothesis correction.
 
-- Goodness of a fit. 
-- Quantify if an observation fits a given model / theory.
+- P-values and significance.
+- Error types in hypothesis testing. 
+- Adjusted p-values. Bonferroni and BH coffection.
 
 ## Setup
 
