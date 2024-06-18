@@ -1,12 +1,17 @@
 # RCDS Further hypothesis testing
 # Jesus Urtasun Elizari - Imperial College London
-# Chapter 1 - Comparing variances
+# Chapter 1 - Fisher test
 
 # Import libraries
 import numpy as np
 import pandas as pd
+import scipy.stats as stats
 import matplotlib.pyplot as plt
-from scipy import stats
+
+# Formulate null and alternative hypothesis
+# H0: var1, var2 come from same distribution
+# H1: var1, var2 com from different distibutions
+alpha = 0.05 # significance level
 
 # Generate random data
 np.random.seed(123)
@@ -19,19 +24,16 @@ data = {
 # Convert to pandas DataFrame
 df = pd.DataFrame(data)
 
-# Plot the histograms with transparency
+# Plot to visualize data
 plt.figure(figsize = (8, 5))
 plt.hist(df["Column1"], bins = 20, color = "skyblue", alpha = 0.5, label = "Sample 1")
 plt.hist(df["Column2"], bins = 20, color = "lightgreen", alpha = 0.5, label = "Sample 2")
-plt.xlabel("Value")
-plt.ylabel("Frequency")
+plt.xlabel("value")
+plt.ylabel("frequency")
 plt.title("Histograms of Sample Data")
+plt.grid(axis = "y", alpha = 0.75)
 plt.legend()
 plt.show()
-
-# Define the null hypothesis and significance level
-# H0: var1, var2 come from same distribution
-alpha = 0.05
 
 # Compute the variances of the two groups
 var1 = np.var(df["Column1"], ddof = 1)
