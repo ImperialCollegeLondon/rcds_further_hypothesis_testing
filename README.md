@@ -10,7 +10,7 @@
 [https://github.com/ImperialCollegeLondon/rcds_further_hypothesis_testing](https://github.com/ImperialCollegeLondon/rcds_further_hypothesis_testing)
 
 This course provides an intermediate level approach to the field of probability and statistical inference. 
-Building on top of the introductiory course [https://github.com/jurtasun/probability_stats_intro](https://github.com/jurtasun/probability_stats_intro), 
+Building on top of the introductiory course [https://github.com/ImperialCollegeLondon/rcds_introduction_sampling_hypothesis_testing](https://github.com/ImperialCollegeLondon/rcds_introduction_sampling_hypothesis_testing/tree/main), 
 the topics covered here will include deeper exploration of hypothesis testing, linear models, and briefly introduce bayesian statistics. 
 The aim of the course is to provide strong foundations at the mathematical and theoretical level, while providing practical exercises to work on real data.
 
