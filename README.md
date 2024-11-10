@@ -7,7 +7,7 @@
 <img src="/readme_figures/grad-school-logo.png">
 
 ### Find the content of the course in GitHub:
-[https://github.com/ImperialCollegeLondon/RCDS_Statistics2](https://github.com/ImperialCollegeLondon/RCDS_Statistics2)
+[https://github.com/ImperialCollegeLondon/rcds_further_hypothesis_testing](https://github.com/ImperialCollegeLondon/rcds_further_hypothesis_testing)
 
 This course provides an intermediate level approach to the field of probability and statistical inference. 
 Building on top of the introductiory course [https://github.com/jurtasun/probability_stats_intro](https://github.com/jurtasun/probability_stats_intro), 
