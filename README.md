@@ -20,23 +20,23 @@ No prior experience on statistics or programming is required for the attendance 
 
 ## Roadmap of the course
 
-### Chapter 1. Parameter estimation & hypothesis testing.
+### Chapter 1. Parameter estimation & hypothesis testing
 
 - Parameter estimation. Recap hypothesis testing.
 - Comparing mean values. The t-test.
 - Comparing variances. The F-test.
 
-### Chapter 2. Normality & comparing multiple groups.
+### Chapter 2. Normality & comparing multiple groups
 
 - Testing for normality. The chi2-test.
 - Comparing more than two groups. ANOVA.
 
-### Chapter 3. Multiple hypothesis correction.
+### Chapter 3. Multiple hypothesis correction
 
 - Significance revisited. Error types in hypothess testing. 
 - Adjusted p-values. Bonferroni and BH coffection.
 
-### Chapter 4. Introduction to bayesian statstics.
+### Chapter 4. Introduction to bayesian statstics
 
 - Bayesian probability. The Bayes' theorem.
 - Prior, likelihood, posterior. Probability as a degree of believe.
