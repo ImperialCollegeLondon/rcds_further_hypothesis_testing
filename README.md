@@ -28,8 +28,8 @@ No prior experience on statistics or programming is required for the attendance 
 
 ### Chapter 2. Normality & comparing multiple groups
 
-- The ![Chi-Squared](https://latex.codecogs.com/png.latex?%5Cchi%5E2)-test for comparing distributions.
-- The ![Chi-Squared](https://latex.codecogs.com/png.latex?%5Cchi%5E2)-test for testing normality.
+- The χ2-test for comparing distributions.
+- The χ2-test for testing normality.
 - Comparing more than two groups. ANOVA.
 
 ### Chapter 3. Multiple hypothesis correction
