@@ -41,7 +41,7 @@ No prior experience on statistics or programming is required for the attendance 
 ### Chapter 4. Introduction to bayesian statstics
 
 - Bayesian probability. The Bayes' theorem.
-- Prior, likelihood, posterior. Probability as a degree of believe.
+- Prior, likelihood, posterior. Probability as a degree of belief.
 - Bayesian inference and statistics. Posterior distribution and Bayes factor.
 
 ### Setup
