@@ -28,12 +28,14 @@ No prior experience on statistics or programming is required for the attendance 
 
 ### Chapter 2. Normality & comparing multiple groups
 
-- Testing for normality. The chi2-test.
+- The ![Chi-Squared](https://latex.codecogs.com/png.latex?%5Cchi%5E2)-test for comparing distributions.
+- The ![Chi-Squared](https://latex.codecogs.com/png.latex?%5Cchi%5E2)-test for testing normality.
 - Comparing more than two groups. ANOVA.
 
 ### Chapter 3. Multiple hypothesis correction
 
-- Significance revisited. Error types in hypothess testing. 
+- Significance revisited. Interpretation of p-values.
+- Error types in hypothess testing.
 - Adjusted p-values. Bonferroni and BH coffection.
 
 ### Chapter 4. Introduction to bayesian statstics
