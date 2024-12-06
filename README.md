@@ -14,7 +14,7 @@ Building on top of the introductiory course [rcds_introduction_sampling_hypothes
 the topics covered here will include deeper exploration of hypothesis testing, linear models, and briefly introduce bayesian statistics. 
 The aim of the course is to provide strong foundations at the mathematical and theoretical level, while providing practical exercises to work on real data.
 
-The course is organized in four chapters, covering topics listed below. 
+The course is organized in four chapters, covering the topics listed below. 
 All will be followed by a practical session and hands-on coding, both in Python and R. 
 No prior experience on statistics or programming is required for the attendance of this course.
 
