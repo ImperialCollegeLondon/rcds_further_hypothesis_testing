@@ -39,13 +39,12 @@ print(f"Manual calculation:")
 print(f"F-statistic = {F_stat_manual:.4f}")
 print(f"p-value = {p_value_manual:.4f}")
 
-# Calculate F statistic and p-value using library
-F_stat_scipy, p_value_scipy = f_oneway(sample1, sample2)
-# F_stat_scipy, p_value_scipy = levene(sample1, sample2)
-# F_stat_scipy, p_value_scipy = bartlett(sample1, sample2)
-print(f"\nUsing SciPy library:")
-print(f"F-statistic = {F_stat_scipy:.4f}")
-print(f"p-value = {p_value_scipy:.4f}")
+# # Calculate F statistic and p-value using library
+# F_stat_scipy = max(var1, var2) / min(var1, var2)
+# p_value_scipy = 2 * (1 - f.cdf(F_stat_scipy, df1, df2))
+# print(f"\nUsing SciPy library:")
+# print(f"F-statistic = {F_stat_scipy:.4f}")
+# print(f"p-value = {p_value_scipy:.4f}")
 
 # Plot the F-distribution
 x = np.linspace(0, 5, 1000)  # Range of F-values for plotting
