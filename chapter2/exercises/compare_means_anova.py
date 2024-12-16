@@ -5,7 +5,7 @@
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import stats
+from scipy.stats import f_oneway, f
 
 # Random seed
 np.random.seed(42)
@@ -50,9 +50,12 @@ df_within = len(group1) + len(group2) + len(group3) - len(data)  # N - k
 # Mean Squares
 msb = ssb / df_between
 msw = ssw / df_within
+df1 = len(data)
+df2 = len(data)
 
 # F-statistic
-f_statistic = msb / msw
+F_stat_manual = msb / msw
+p_value_manual = 2 * (1 - f.cdf(F_stat_manual, df1, df2))
 
 # Print results
 print("\nANOVA (manual):")
@@ -60,15 +63,16 @@ print(f"Sum of Squares Between (SSB): {ssb:.2f}")
 print(f"Sum of Squares Within (SSW): {ssw:.2f}")
 print(f"Mean Square Between (MSB): {msb:.2f}")
 print(f"Mean Square Within (MSW): {msw:.2f}")
-print(f"F-statistic: {f_statistic:.2f}")
+print(f"F statistic (manual): {F_stat_manual:.2f}")
+print(f"p value (manual): {p_value_manual:.4f}")
 
 # Compute ANOVA (scipy)
-f_stat, p_value = stats.f_oneway(group1, group2, group3)
+f_stat, p_value = f_oneway(group1, group2, group3)
 
 # Print results
 print("\nANOVA (scipy stats):")
-print(f"F-statistic (scipy): {f_stat:.2f}")
-print(f"P-value (scipy): {p_value:.4f}")
+print(f"F statistic (scipy): {f_stat:.2f}")
+print(f"P value (scipy): {p_value:.4f}")
 
 # Conclusion based on the p-value
 alpha = 0.05

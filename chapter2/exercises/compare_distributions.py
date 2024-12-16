@@ -46,6 +46,7 @@ hist2, bin_edges2 = np.histogram(data2, bins = bins)
 contingency_table = np.array([hist1, hist2])
 # Add a small constant to avoid zero bins
 contingency_table = np.array([hist1 + 1, hist2 + 1])
+print("\ndata1: ", hist1, "\ndata2: ", hist2)
 print("\nContingency Table (distribution 1 vs distribution 2):\n", contingency_table)
 print("Dimensions: ", contingency_table.shape)
 

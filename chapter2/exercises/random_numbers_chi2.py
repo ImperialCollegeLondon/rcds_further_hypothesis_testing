@@ -35,13 +35,6 @@ def simulate_human_choices(n_people):
     choices = np.random.choice(range(10), size = n_people * 3, p = human_bias)
     return choices
 
-# Analyze frequencies
-def analyze_frequencies(choices):
-
-    # Count occurrences of each number
-    frequencies = [np.sum(choices == i) for i in range(10)]
-    return np.array(frequencies)
-
 # Compare expected vs observed choices
 print("\nCompare expected vs observed choices")
 
