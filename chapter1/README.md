@@ -81,7 +81,7 @@ t_dist = t.pdf(x, df = n - 1) # Probability density function for t-distribution
 plt.plot(x, t_dist, label = f"t-distribution (df = {n - 1})")
 plt.axvline(t_stat_manual, color = "red", linestyle = "--", label = f"T statistic = {t_stat_manual:.2f}")
 plt.axvline(-t_stat_manual, color = "red", linestyle = "--")
-plt.fill_between(x, t_dist, where = (x >= abs(t_stat_manual)), color = "red", alpha = 0.3, label = "Rejection Region (one side)")
+plt.fill_between(x, t_dist, where = (x >= abs(t_stat_manual)), color = "red", alpha = 0.3, label = "Rejection region (one side)")
 plt.fill_between(x, t_dist, where = (x <= -abs(t_stat_manual)), color = "red", alpha = 0.3)
 plt.title("t-distribution and observed t statistic")
 plt.xlabel("t value")
@@ -171,9 +171,9 @@ plt.show()
 # Interpret result (significance level 0.05)
 alpha = 0.05
 if p_value_manual < alpha:
-    print("Reject H0: Samples come from same distribution.")
+    print("Reject H0: Samples come from different distributions.")
 else:
-    print("Accept H0: Samples come from different distributions.")
+    print("Accept H0: Samples come from same distribution.")
 
 ```
 
@@ -220,13 +220,12 @@ print(f"Manual calculation:")
 print(f"F-statistic = {F_stat_manual:.4f}")
 print(f"p-value = {p_value_manual:.4f}")
 
-# Calculate F statistic and p-value using library
-F_stat_scipy, p_value_scipy = f_oneway(sample1, sample2)
-# F_stat_scipy, p_value_scipy = levene(sample1, sample2)
-# F_stat_scipy, p_value_scipy = bartlett(sample1, sample2)
-print(f"\nUsing SciPy library:")
-print(f"F-statistic = {F_stat_scipy:.4f}")
-print(f"p-value = {p_value_scipy:.4f}")
+# # Calculate F statistic and p-value using library
+# F_stat_scipy = max(var1, var2) / min(var1, var2)
+# p_value_scipy = 2 * (1 - f.cdf(F_stat_scipy, df1, df2))
+# print(f"\nUsing SciPy library:")
+# print(f"F-statistic = {F_stat_scipy:.4f}")
+# print(f"p-value = {p_value_scipy:.4f}")
 
 # Plot the F-distribution
 x = np.linspace(0, 5, 1000)  # Range of F-values for plotting
@@ -248,6 +247,5 @@ if p_value_manual < alpha:
     print("Reject H0: Samples come from different distribution.")
 else:
     print("Accept H0: Samples come from same distribution.")
-
 
 ```
