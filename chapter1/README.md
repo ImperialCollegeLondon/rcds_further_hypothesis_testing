@@ -10,17 +10,6 @@
 
 In this chapter we will learn how to compare means and variances.
 We will introduce for that the two-sample t-test, and the Fisher F-test.
-Import the libraries neeed for these examples.
-
-```python
-
-# Import libraries
-import numpy as np
-from math import comb, exp, factorial, erf, sqrt
-from scipy import stats
-import matplotlib.pyplot as plt
-
-```
 
 ### One sample t-test
 
