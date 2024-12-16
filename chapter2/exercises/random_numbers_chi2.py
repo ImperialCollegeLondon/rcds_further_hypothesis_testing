@@ -19,7 +19,7 @@ def simulate_random_choices(n_people):
 def simulate_human_choices(n_people):
 
     # Frequency vector for numbers 1 to 9
-    frequencies = [2, 2, 7, 4, 2, 2, 7, 2, 1]
+    frequencies = [3, 2, 5, 3, 1, 2, 7, 2, 2]
     total_frequency = sum(frequencies)
     
     # Normalize frequencies / compute probabilities
