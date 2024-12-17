@@ -1,12 +1,14 @@
 # RCDS Introduction to probability and statistical inference.
 # Jesús Urtasun Elizari. ICL 2024 / 2025.
-# Final assignment:
-# Check if there is a significant difference between expected and observed choices.
+# Chapter 2. Normality and multiple groups.
 
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import chisquare
+
+# Random seed
+np.random.seed(123)
 
 # Simulate random choices
 def simulate_random_choices(n_people):
@@ -19,7 +21,7 @@ def simulate_random_choices(n_people):
 def simulate_human_choices(n_people):
 
     # Frequency vector for numbers 1 to 9
-    frequencies = [3, 2, 5, 3, 1, 2, 7, 2, 2]
+    frequencies = [1, 2, 1, 3, 1, 2, 4, 2, 1]
     total_frequency = sum(frequencies)
     
     # Normalize frequencies / compute probabilities
