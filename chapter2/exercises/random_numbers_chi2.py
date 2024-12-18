@@ -7,9 +7,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import chisquare
 
-# Random seed
-np.random.seed(123)
-
 # Simulate random choices
 def simulate_random_choices(n_people):
 
@@ -21,7 +18,7 @@ def simulate_random_choices(n_people):
 def simulate_human_choices(n_people):
 
     # Frequency vector for numbers 1 to 9
-    frequencies = [1, 2, 1, 3, 1, 2, 4, 2, 1]
+    frequencies = [1, 2, 1, 2, 1, 2, 1, 2, 1]
     total_frequency = sum(frequencies)
     
     # Normalize frequencies / compute probabilities
@@ -37,8 +34,15 @@ def simulate_human_choices(n_people):
     choices = np.random.choice(range(10), size = n_people * 3, p = human_bias)
     return choices
 
+# Random seed
+np.random.seed(123)
+
 # Compare expected vs observed choices
 print("\nCompare expected vs observed choices")
+
+# Formulate hypotheses
+# H0: Data follows a uniform distribution
+# H1: Significant difference from uniform distribution
 
 # Prepare expected and observed choices
 n_people = 10 # Number of participants

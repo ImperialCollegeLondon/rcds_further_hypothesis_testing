@@ -5,7 +5,8 @@
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import chisquare, norm
+from scipy.stats import chisquare, chi2, norm
+from scipy.integrate import quad
 
 # Random seed
 np.random.seed(123)
@@ -47,16 +48,14 @@ expected_frequencies *= hist.sum() / expected_frequencies.sum()
 
 # Compute Chi-square statistic manually
 chi_square_manual = np.sum((hist - expected_frequencies) ** 2 / expected_frequencies)
+df = num_bins - 1
+p_value_manual, _ = quad(chi2.pdf, chi_square_manual, np.inf, args = (df, ))
+print("\nChi-square Statistic (manual):", chi_square_manual)
+print("P-value:", p_value_manual)
 
 # Compute Chi-square statistic using scipy
 chi_square_scipy, p_value = chisquare(hist, f_exp = expected_frequencies)
-print("Chi-square Statistic (scipy):", chi_square_scipy)
-print("P-value:", p_value)
-
-# Print results
-print("Observed Frequencies:", hist)
-print("Expected Frequencies:", np.round(expected_frequencies, 2))
-print("Chi-square Statistic (manual):", chi_square_manual)
+print("\nChi-square Statistic (scipy):", chi_square_scipy)
 print("P-value:", p_value)
 
 # Interpret result
@@ -64,11 +63,10 @@ alpha = 0.05
 if p_value < alpha:
     print("\nReject H0: The data does not follow a normal distribution.")
 else:
-    print("Fail to reject H0: The data follows a normal distribution.")
+    print("\nFail to reject H0: The data follows a normal distribution.")
 
 # Plot the chi2 distribution
 x = np.linspace(0, 30, 500)
-df = num_bins - 1
 y = norm.pdf(x, loc = chi_square_manual, scale = np.sqrt(2*df))
 plt.figure(figsize = (8, 6))
 plt.plot(x, y, label = "Chi-square Distribution")

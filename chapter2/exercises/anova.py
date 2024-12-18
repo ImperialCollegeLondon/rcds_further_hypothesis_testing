@@ -10,6 +10,10 @@ from scipy.stats import f_oneway, f
 # Random seed
 np.random.seed(42)
 
+# Formulate hypotheses
+# H0: All data come from same distribution
+# H1: At least one sample comes from different distribution
+
 # Generate gaussian observations
 group1 = np.random.normal(loc = 5, scale = 1, size = 10)
 group2 = np.random.normal(loc = 5, scale = 1, size = 10)
@@ -20,7 +24,7 @@ data = [group1, group2, group3]
 plt.figure(figsize = (8, 6))
 plt.violinplot(data, showmeans = True, showextrema = True)
 plt.title("Plot of observations")
-plt.ylabel("Value")
+plt.ylabel("Sample mean")
 plt.show()
 
 # Compute group means
@@ -30,7 +34,7 @@ mean3 = np.mean(group3)
 overall_mean = np.mean(np.concatenate([group1, group2, group3]))
 
 # Copute sum of squares between (SSB) and within (SSW)
-ssb = len(group1) * ((mean1 - overall_mean)**2 + (mean2 - overall_mean)**2 + (mean3 - overall_mean)**2)
+ssb = len(data) * ((mean1 - overall_mean)**2 + (mean2 - overall_mean)**2 + (mean3 - overall_mean)**2)
 ssw = np.sum((group1 - mean1)**2) + np.sum((group2 - mean2)**2) + np.sum((group3 - mean3)**2)
 df_between = len(data) - 1  # n - 1
 df_within = len(group1) + len(group2) + len(group3) - len(data)  # N - n

@@ -10,211 +10,245 @@
 
 In this chapter we learn how to compare distributions and check for normaliry.
 Finally we will see how to extend the t-tes and F-test to compare multiple groups, using ANOVA.
-Import the libraries neeed for these examples.
+
+### ANOVA
+ 
+Analysis of variances (ANOVA) for many groups.
 
 ```python
 
 # Import libraries
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import chi2_contingency
-
-```
-
-### Chi2 for comparing distributions
-
-Chi2 for comparing distributions:
-
-```python
-
-# Random seed
-np.random.seed(42)
-
-# Parameters for distribution 1
-mean1 = 0
-std1 = 1
-size1 = 1000
-
-# Parameters for distribution 2
-mean2 = 0.5
-std2 = 1.2
-size2 = 1000
-
-# Sample from gaussian distribution
-data1 = np.random.normal(mean1, std1, size1)
-data2 = np.random.normal(mean2, std2, size2)
-
-# Plot the distributions
-plt.figure(figsize = (10, 6))
-bins = np.linspace(-5, 5, 30)
-
-# Use common bins for histogram
-plt.hist(data1, bins, alpha = 0.5, label = "Distribution 1 (mean = 0, std = 1)", density = True)
-plt.hist(data2, bins, alpha = 0.5, label = "Distribution 2 (mean = 0.5, std = 1.2)", density = True)
-plt.title("Gaussian distributions")
-plt.xlabel("Value")
-plt.ylabel("Density")
-plt.legend()
-plt.grid(True)
-plt.show()
-
-# Convert data into histogram counts for the chi-squared test
-hist1, bin_edges1 = np.histogram(data1, bins = bins)
-hist2, bin_edges2 = np.histogram(data2, bins = bins)
-
-# Combine histograms into a contingency table
-contingency_table = np.array([hist1, hist2])
-# Add a small constant to avoid zero bins
-contingency_table = np.array([hist1 + 1, hist2 + 1])
-print("\nContingency Table (distribution 1 vs distribution 2):\n", contingency_table)
-print("Dimensions: ", contingency_table.shape)
-
-# Perform the Chi-squared test
-chi2, p_value, dof, expected = chi2_contingency(contingency_table)
-
-# Print results
-print(f"\nChi-squared test statistic: {chi2:.4f}")
-print(f"P-value: {p_value:.4f}")
-if p_value < 0.05:
-    print("The distributions are significantly different (reject H0).")
-else:
-    print("No significant difference between the distributions (fail to reject H0).")
-
-```
-
-### Chi2 for checking normality
-
-Chi2 for checking normality:
-
-```python
-
-# Random seed
-np.random.seed(42)
-
-# Parameters for distribution
-mean = 0
-std = 1
-size = 1000
-
-# Sample from gaussian distiribution
-data = np.random.normal(mean, std, size)
-
-# Plot histogram and gaussian function
-bins = np.linspace(-4, 4, 30)  # Define bin edges for histogram
-bin_centers = 0.5 * (bins[1:] + bins[:-1])  # Compute bin centers for plotting the PDF
-
-# Histogram of the data
-hist, _ = np.histogram(data, bins = bins, density = True)
-
-# Theoretical Gaussian PDF
-pdf = norm.pdf(bin_centers, mean, std)
-
-# Plot the histogram and theoretical Gaussian
-plt.figure(figsize = (10, 6))
-plt.hist(data, bins = bins, density = True, alpha = 0.6, label = "Sampled Data")
-plt.plot(bin_centers, pdf, label = "Gaussian PDF (mean = 0, std = 1)", color = "red", linewidth = 2)
-plt.title("Gaussian Data vs. Gaussian Function")
-plt.xlabel("Value")
-plt.ylabel("Density")
-plt.legend()
-plt.grid(True)
-plt.show()
-
-# Scale histogram to match the sample size for chi-squared test
-observed_counts, _ = np.histogram(data, bins = bins)
-expected_counts = size * np.diff(bins) * pdf  # Scale pdf to expected counts
-# Add a small constant to avoid zeros
-contingency_table = np.array([observed_counts, expected_counts + 1e-10])
-print("\nContingency Table (Observed vs. Expected):\n", contingency_table)
-print("Dimensions: ", contingency_table.shape)
-
-# Perform chi-squared test
-chi2, p_value = chi2_contingency([observed_counts, expected_counts + 1e-10])[:2]
-
-# Print results
-print(f"\nChi-squared test statistic: {chi2:.4f}")
-print(f"P-value: {p_value:.4f}")
-if p_value < 0.05:
-    print("The data significantly deviates from a Gaussian distribution (reject H0).")
-else:
-    print("The data does not significantly deviate from a Gaussian distribution (fail to reject H0).")
-
-```
-
-### Comparing multiple groups with ANOVA
-
-Comparing multiple groups with ANOVA:
-
-```python
+from scipy.stats import f_oneway, f
 
 # Random seed
 np.random.seed(42)
 
 # Generate gaussian observations
-group1 = np.random.normal(loc = 2, scale = 1, size = 10)
+group1 = np.random.normal(loc = 5, scale = 1, size = 10)
 group2 = np.random.normal(loc = 5, scale = 1, size = 10)
-group3 = np.random.normal(loc = 8, scale = 1, size = 10)
-# # Generate identical groups
-# group1 = np.array([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
-# group2 = np.array([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
-# group3 = np.array([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])
-
-# Combine groups into a single array
+group3 = np.random.normal(loc = 5, scale = 1, size = 10)
 data = [group1, group2, group3]
 
-# Step 2: Plot the observations
+# Plot observations
 plt.figure(figsize = (8, 6))
-plt.boxplot(data, labels = ["Group 1", "Group 2", "Group 3"])
-plt.title("Boxplot of observations")
-plt.ylabel("Value")
+plt.violinplot(data, showmeans = True, showextrema = True)
+plt.title("Plot of observations")
+plt.ylabel("Sample mean")
 plt.show()
 
-# Compute ANOVA (manually)
-
-# Group means
+# Compute group means
 mean1 = np.mean(group1)
 mean2 = np.mean(group2)
 mean3 = np.mean(group3)
 overall_mean = np.mean(np.concatenate([group1, group2, group3]))
 
-# Sum of Squares Between (SSB)
-ssb = len(group1) * ((mean1 - overall_mean)**2 + (mean2 - overall_mean)**2 + (mean3 - overall_mean)**2)
-
-# Sum of Squares Within (SSW)
+# Copute sum of squares between (SSB) and within (SSW)
+ssb = len(data) * ((mean1 - overall_mean)**2 + (mean2 - overall_mean)**2 + (mean3 - overall_mean)**2)
 ssw = np.sum((group1 - mean1)**2) + np.sum((group2 - mean2)**2) + np.sum((group3 - mean3)**2)
-
-# Degrees of freedom
-df_between = len(data) - 1  # k - 1
-df_within = len(group1) + len(group2) + len(group3) - len(data)  # N - k
+df_between = len(data) - 1  # n - 1
+df_within = len(group1) + len(group2) + len(group3) - len(data)  # N - n
 
 # Mean Squares
 msb = ssb / df_between
 msw = ssw / df_within
+df1 = len(data)
+df2 = len(data)
 
 # F-statistic
-f_statistic = msb / msw
-
-# Print results
+F_stat_manual = msb / msw
+p_value_manual = 1 - f.cdf(F_stat_manual, df1, df2)
 print("\nANOVA (manual):")
-print(f"Sum of Squares Between (SSB): {ssb:.2f}")
-print(f"Sum of Squares Within (SSW): {ssw:.2f}")
-print(f"Mean Square Between (MSB): {msb:.2f}")
-print(f"Mean Square Within (MSW): {msw:.2f}")
-print(f"F-statistic: {f_statistic:.2f}")
+print(f"F statistic (manual): {F_stat_manual:.2f}")
+print(f"p value (manual): {p_value_manual:.4f}")
 
 # Compute ANOVA (scipy)
-f_stat, p_value = stats.f_oneway(group1, group2, group3)
-
-# Print results
+f_stat, p_value = f_oneway(group1, group2, group3)
 print("\nANOVA (scipy stats):")
-print(f"F-statistic (scipy): {f_stat:.2f}")
-print(f"P-value (scipy): {p_value:.4f}")
+print(f"F statistic (scipy): {f_stat:.2f}")
+print(f"p value (scipy): {p_value:.4f}")
 
 # Conclusion based on the p-value
 alpha = 0.05
-if p_value < alpha:
+if p_value_manual < alpha:
     print("\nReject the null hypothesis: There are significant differences between the groups.")
 else:
     print("\nFail to reject the null hypothesis: No significant differences between the groups.")
+
+
+```
+
+### Chi2 for checking normality
+
+Comparing a given set of observations with a hypothesized normal distribution.
+
+```python
+
+# Import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import chisquare, chi2, norm
+from scipy.integrate import quad
+
+# Random seed
+np.random.seed(123)
+
+# Formulate hypotheses
+# H0: Data follows a normal distribution
+# H1: Data does not follow a normal distribution
+
+# Generate random data sampling from gaussian
+sample_size = 100
+observed_data = np.random.normal(loc = 0, scale = 1, size = sample_size)
+# observed_data = np.random.randint(0, 10, size = sample_size)
+
+# Generate points normal distribution
+x = np.linspace(observed_data.min(), observed_data.max(), 500)
+y = norm.pdf(x, loc = np.mean(observed_data), scale = np.std(observed_data))
+
+# Define bins and calculate observed frequencies
+num_bins = 10
+bin_edges = np.linspace(observed_data.min(), observed_data.max(), num_bins + 1)
+hist, _ = np.histogram(observed_data, bins = bin_edges)
+
+# Plot observations and gaussian fit
+plt.figure(figsize = (8, 6))
+plt.hist(observed_data, bins = num_bins, density = True, alpha = 0.6, color = "skyblue", label = "observed Data")
+plt.plot(x, y, "r-", label = "Normal Distribution")
+plt.title("Histogram of observations")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Compute expected frequencies
+cdf_values = norm.cdf(bin_edges, loc = np.mean(observed_data), scale = np.std(observed_data))
+expected_frequencies = sample_size * np.diff(cdf_values)
+# Normalize expected frequencies to match the sum of observed frequencies
+expected_frequencies *= hist.sum() / expected_frequencies.sum()
+
+# Compute Chi-square statistic manually
+chi_square_manual = np.sum((hist - expected_frequencies) ** 2 / expected_frequencies)
+df = num_bins - 1
+p_value_manual, _ = quad(chi2.pdf, chi_square_manual, np.inf, args = (df, ))
+print("\nChi-square Statistic (manual):", chi_square_manual)
+print("P-value:", p_value_manual)
+
+# Compute Chi-square statistic using scipy
+chi_square_scipy, p_value = chisquare(hist, f_exp = expected_frequencies)
+print("\nChi-square Statistic (scipy):", chi_square_scipy)
+print("P-value:", p_value)
+
+# Interpret result
+alpha = 0.05
+if p_value < alpha:
+    print("\nReject H0: The data does not follow a normal distribution.")
+else:
+    print("\nFail to reject H0: The data follows a normal distribution.")
+
+# Plot the chi2 distribution
+x = np.linspace(0, 30, 500)
+y = norm.pdf(x, loc = chi_square_manual, scale = np.sqrt(2*df))
+plt.figure(figsize = (8, 6))
+plt.plot(x, y, label = "Chi-square Distribution")
+plt.axvline(chi_square_manual, color = "r", linestyle = "--", label = f"Chi-square Observed: {chi_square_manual:.2f}")
+plt.title("Chi-square Goodness-of-Fit Test")
+plt.xlabel("Chi-square Value")
+plt.ylabel("Density")
+plt.legend()
+plt.grid()
+plt.show()
+
+```
+
+### Chi2 for comparing distributions
+
+Comparing a given set of observations with some hypothesized distribution.
+
+```python
+
+# Import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import chisquare
+
+# Simulate random choices
+def simulate_random_choices(n_people):
+
+    # Uniform distribution
+    random_choices = np.random.randint(0, 10, size = n_people * 3)
+    return random_choices
+
+# Simulate human-biased number choices
+def simulate_human_choices(n_people):
+
+    # Frequency vector for numbers 1 to 9
+    frequencies = [1, 2, 1, 2, 1, 2, 1, 2, 1]
+    total_frequency = sum(frequencies)
+    
+    # Normalize frequencies / compute probabilities
+    human_bias = np.array(frequencies) / total_frequency
+    
+    # Add 0 with small frequency to complete bias for numbers 0-9
+    human_bias = np.insert(human_bias, 0, (1 / total_frequency))
+    
+    # Check sum of probabilities equals 1
+    human_bias /= human_bias.sum()
+    
+    # Simulate choices using the computed bias (each person picks 3 numbers)
+    choices = np.random.choice(range(10), size = n_people * 3, p = human_bias)
+    return choices
+
+# Random seed
+np.random.seed(123)
+
+# Compare expected vs observed choices
+print("\nCompare expected vs observed choices")
+
+# Formulate hypotheses
+# H0: Data follows a uniform distribution
+# H1: Significant difference from uniform distribution
+
+# Prepare expected and observed choices
+n_people = 10 # Number of participants
+human_choices = simulate_human_choices(n_people)
+random_choices = simulate_random_choices(n_people)
+
+# Count frequencies
+random_freq =[np.sum(random_choices == i) for i in range(10)]
+human_freq = [np.sum(human_choices == i) for i in range(10)]
+
+# Perform chi-square test
+expected_freq = [n_people * 3 / 10] * 10  # Expected frequency for uniform distribution
+chi2_stat, p_value = chisquare(human_freq, f_exp = expected_freq)
+
+# Plot the results
+x_labels = [str(i) for i in range(10)]
+x = np.arange(len(x_labels))
+plt.figure(figsize = (10, 6))
+# Plot human (observed) choices
+plt.bar(x - 0.2, human_freq, width = 0.4, label = "Human Choices", color = "skyblue")
+# Plot random (expected) choices
+plt.bar(x + 0.2, random_freq, width = 0.4, label = "Random Choices", color = "orange")
+plt.axhline(y = n_people * 3 / 10, color = "gray", linestyle = "--", label = "Expected Uniform Frequency")
+# Add lables and title
+plt.title("Distribution of Numbers: Human Choices vs Random Choices")
+plt.xlabel("Numbers")
+plt.ylabel("Frequency")
+plt.xticks(x, x_labels)
+plt.legend()
+plt.show()
+
+# Print results
+print("Chi-Square Test Results:")
+print(f"Chi-Square Statistic: {chi2_stat:.2f}")
+print(f"P-value: {p_value:.4f}")
+
+if p_value < 0.05:
+    print("\nThe observed distribution significantly deviates from a uniform distribution.")
+else:
+    print("\nNo significant deviation from a uniform distribution.")
 
 ```
