@@ -17,8 +17,8 @@ np.random.seed(123)
 
 # Generate random data sampling from gaussian
 sample_size = 100
-observed_data = np.random.normal(loc = 0, scale = 1, size = sample_size)
-# observed_data = np.random.randint(0, 10, size = sample_size)
+# observed_data = np.random.normal(loc = 0, scale = 1, size = sample_size)
+observed_data = np.random.randint(0, 10, size = sample_size)
 
 # Generate points normal distribution
 x = np.linspace(observed_data.min(), observed_data.max(), 500)

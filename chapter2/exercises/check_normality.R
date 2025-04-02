@@ -10,8 +10,8 @@ set.seed(123)
 
 # Generate random data sampling from Gaussian
 sample_size <- 100
-observed_data <- rnorm(sample_size, mean = 0, sd = 1)
-# observed_data <- sample(0:9, size = sample_size, replace = TRUE)
+# observed_data <- rnorm(sample_size, mean = 0, sd = 1)
+observed_data <- sample(0:9, size = sample_size, replace = TRUE)
 
 # Generate points for the normal distribution
 x <- seq(min(observed_data), max(observed_data), length.out = 500)
@@ -75,3 +75,4 @@ ggplot(chi2_df, aes(x = x, y = y)) +
   xlab("Chi-square Value") +
   ylab("Density") +
   theme_minimal()
+
