@@ -18,6 +18,9 @@ np.random.seed(42)
 group1 = np.random.normal(loc = 5, scale = 1, size = 10)
 group2 = np.random.normal(loc = 5, scale = 1, size = 10)
 group3 = np.random.normal(loc = 5, scale = 1, size = 10)
+# group1 = np.random.normal(loc = 5, scale = 1, size = 100)
+# group2 = np.random.normal(loc = 5, scale = 1, size = 100)
+# group3 = np.random.normal(loc = 5, scale = 1, size = 100)
 data = [group1, group2, group3]
 
 # Plot observations
@@ -33,30 +36,34 @@ mean2 = np.mean(group2)
 mean3 = np.mean(group3)
 overall_mean = np.mean(np.concatenate([group1, group2, group3]))
 
-# Copute sum of squares between (SSB) and within (SSW)
-ssb = len(data) * ((mean1 - overall_mean)**2 + (mean2 - overall_mean)**2 + (mean3 - overall_mean)**2)
-ssw = np.sum((group1 - mean1)**2) + np.sum((group2 - mean2)**2) + np.sum((group3 - mean3)**2)
-df_between = len(data) - 1  # n - 1
-df_within = len(group1) + len(group2) + len(group3) - len(data)  # N - n
+# Degrees of freedom
+df_between = len(data) - 1
+df_within = len(group1) + len(group2) + len(group3) - len(data)
 
-# Mean Squares
+# Correct SSB calculation
+ssb = (len(group1) * (mean1 - overall_mean)**2 + 
+       len(group2) * (mean2 - overall_mean)**2 + 
+       len(group3) * (mean3 - overall_mean)**2)
+
+# SSW stays the same
+ssw = np.sum((group1 - mean1)**2) + np.sum((group2 - mean2)**2) + np.sum((group3 - mean3)**2)
+
+# Mean squares
 msb = ssb / df_between
 msw = ssw / df_within
-df1 = len(data)
-df2 = len(data)
 
 # F-statistic
 F_stat_manual = msb / msw
-p_value_manual = 1 - f.cdf(F_stat_manual, df1, df2)
+p_value_manual = 1 - f.cdf(F_stat_manual, df_between, df_within)
 print("\nANOVA (manual):")
-print(f"F statistic (manual): {F_stat_manual:.2f}")
+print(f"F statistic (manual): {F_stat_manual:.4f}")
 print(f"p value (manual): {p_value_manual:.4f}")
 
-# Compute ANOVA (scipy)
-f_stat, p_value = f_oneway(group1, group2, group3)
+# SciPy ANOVA for verification
+F_stat_scipy, p_value_scipy = f_oneway(group1, group2, group3)
 print("\nANOVA (scipy stats):")
-print(f"F statistic (scipy): {f_stat:.2f}")
-print(f"p value (scipy): {p_value:.4f}")
+print(f"F statistic (scipy): {F_stat_scipy:.4f}")
+print(f"p value (scipy): {p_value_scipy:.4f}")
 
 # Conclusion based on the p-value
 alpha = 0.05

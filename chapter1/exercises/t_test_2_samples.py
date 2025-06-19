@@ -1,4 +1,4 @@
-# RCDS Introduction to probability and statistical inference.
+# RCDS Advanced probability and statistical inference.
 # Jesús Urtasun Elizari. ICL 2024 / 2025.
 # Chapter 1. Parameter estimation and hypotesis testing.
 
