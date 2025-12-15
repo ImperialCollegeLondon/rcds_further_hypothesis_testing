@@ -18,8 +18,8 @@ print("\nOne sample t-test:\nCompare sample mean to hypothesized value")
 # H1 (alternative hypothesis): The coin is biased (p != 0.5)
 
 # Simulate 100 coin tosses (1 = heads, 0 = tails)
-observations = np.random.choice([0, 1], size = 100, p = [0.5, 0.5])
-# observations = np.random.choice([0, 1], size = 100, p = [0.3, 0.7])
+# observations = np.random.choice([0, 1], size = 100, p = [0.5, 0.5])
+observations = np.random.choice([0, 1], size = 100, p = [0.3, 0.7])
 
 # Plot histogram of the observations
 plt.hist(observations, bins = 2, edgecolor = "black", alpha = 0.75)
